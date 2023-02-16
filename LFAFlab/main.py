@@ -4,10 +4,10 @@ class Main:
 
     def __init__(self):
         self.productions = {
-            'S': ['dA'],
-            'A': ['d', 'aB'],
-            'B': ['bC'],
-            'C': ['cA', 'aS'],
+            'S': ['aA', 'aB'],
+            'A': ['bS'],
+            'B': ['aC'],
+            'C': ['a', 'bS'],
         }
         self.start_symbol = 'S'
         self.grammar = Grammars(self.productions, self.start_symbol)
@@ -25,20 +25,21 @@ if __name__ == '__main__':
     main.generate_strings(5)
     automatons = main.grammar.to_finite_automaton()
     automaton = {
-        'states': {'q0', 'q1', 'q2', 'q3', 'q4'},
-        'alphabet': {'a', 'b', 'c', 'd'},
+        'states': {'q0', 'q1', 'q2', 'q3', 'q4', 'q5'},
+        'alphabet': {'a', 'b'},
         'transitions': {
-            'q0': {'d': 'q1'},
-            'q1': {'d': 'q2', 'a': 'q3'},
-            'q2': {'b': 'q4'},
-            'q3': {'c': 'q0', 'a': 'q1'},
-            'q4': {'a': 'q1'}
+            'q0': {'a': 'q1'},
+            'q1': {'b': 'q2', 'a': 'q3'},
+            'q2': {'a': 'q4'},
+            'q3': {'a': 'q1', 'b': 'q5'},
+            'q4': {'a': 'q5', 'b': 'q5'},
+            'q5': {'a': 'q5', 'b': 'q5'}
         },
         'start_state': 'q0',
-        'final_states': {'q1'}
+        'final_states': {'q5'}
     }
     checker = FiniteAutomaton(automaton)
-    checker.check_strings(['daac', 'daad', 'daa', 'aa', 'dacada'])
+    checker.check_strings(['aaa', 'abaaa', 'ababaa', 'aa', 'abababa'])
     print(automatons)
 
 
