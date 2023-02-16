@@ -1,29 +1,4 @@
-# class FiniteAutomaton:
-#     def __init__(self, states, alphabet, transitions, start_state, final_states):
-#         self.states = states
-#         self.alphabet = alphabet
-#         self.transitions = transitions
-#         self.start_state = start_state
-#         self.final_states = final_states
-#
-#
-#     def check_string(self, string):
-#         current_state = self.start_state
-#
-#         for symbol in string:
-#             try:
-#                 current_state = self.transitions[current_state][symbol]
-#             except KeyError:
-#                 return False
-#
-#         return current_state in self.final_states
-#
-#     def check_strings(self, strings):
-#         for string in strings:
-#             if self.check_string(string):
-#                 print(f'String "{string}" is accepted by the automaton.')
-#             else:
-#                 print(f'String "{string}" is rejected by the automaton.')
+
 class FiniteAutomaton:
     def __init__(self, automaton):
         self.states = automaton['states']

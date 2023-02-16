@@ -13,19 +13,11 @@ class Main:
         self.grammar = Grammars(self.productions, self.start_symbol)
         self.finite_automaton = self.grammar.to_finite_automaton()
         self.automaton = FiniteAutomaton
-        # # self.grammar = Grammars(self.productions, self.start_symbol)
-        # # self.finite_automaton = self.grammar.to_finite_automaton()
-        # # self.automaton = FiniteAutomaton(self.finite_automaton)
-        # self.grammar = Grammars(self.productions, self.start_symbol)
-        # self.automaton = self.grammar.to_finite_automaton()
-        # self.finite_automaton = FiniteAutomaton(self.automaton)
+
     def generate_strings(self, num_strings):
         for i in range(num_strings):
             string = self.grammar.generate_string()
-            # if self.automaton.check_string(string):
-            #     print(f'String "{string}" is accepted by the automaton.')
-            # else:
-            #     print(f'String "{string}" is rejected by the automaton.')
+
             print(string)
 
 if __name__ == '__main__':
