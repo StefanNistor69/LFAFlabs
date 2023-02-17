@@ -1,4 +1,3 @@
-
 import random
 
 class Grammars:
@@ -16,27 +15,24 @@ class Grammars:
         return ''.join(self._generate_string(s) for s in production)
 
     def to_finite_automaton(self):
-        # Initialize the automaton with a single start state
         start_state = 0
         automatons = {start_state: {}}
         state_count = 1
 
-        # Add transitions for each production rule
         for symbol in self.productions:
             for production in self.productions[symbol]:
                 current_state = start_state
                 for s in production:
                     if s not in automatons[current_state]:
-                        # Add a new state and transition
+
                         automatons[current_state][s] = state_count
                         automatons[state_count] = {}
                         state_count += 1
                     current_state = automatons[current_state][s]
-                # Add an epsilon transition to the final state for the last symbol in the production
                 if current_state not in automatons:
                     automatons[current_state] = {}
                 automatons[current_state][''] = start_state
 
-        # Return the automaton
+
         return automatons
 
