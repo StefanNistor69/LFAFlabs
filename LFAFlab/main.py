@@ -12,17 +12,24 @@ class Main:
         self.start_symbol = 'S'
         self.grammar = Grammars(self.productions, self.start_symbol)
         self.finite_automaton = self.grammar.to_finite_automaton()
-        self.automaton = FiniteAutomaton
+        self.automaton = FiniteAutomaton(self.finite_automaton)
 
     def generate_strings(self, num_strings):
+
         for i in range(num_strings):
             string = self.grammar.generate_string()
 
             print(string)
+            accepted = self.automaton.check_string(string)
+            if accepted:
+                print(f'String "{string}" is accepted by the automaton.')
+            else:
+                print(f'String "{string}" is rejected by the automaton.')
 
 if __name__ == '__main__':
     main = Main()
     main.generate_strings(5)
+    # print(main.generate_strings(6))
     automatons = main.grammar.to_finite_automaton()
     automaton = {
         'states': {'q0', 'q1', 'q2', 'q3', 'q4', 'q5'},
@@ -40,6 +47,7 @@ if __name__ == '__main__':
     }
     checker = FiniteAutomaton(automaton)
     checker.check_strings(['aaa', 'abaaa', 'ababaa', 'aa', 'abababa'])
+    # checker.check_strings([main.generate_strings()])
     print(automatons)
 
 
