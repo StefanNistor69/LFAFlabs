@@ -58,7 +58,34 @@ if __name__ == '__main__':
     # Print the finite automaton
     print(automatons)
 
+automation = Automaton()
+automation.states = ['q0', 'q1', 'q2', 'q3']
+automation.alphabet = ['a', 'b', 'c']
+automation.transitions = {('q0', 'a'): ['q0', 'q1'],
+                   ('q1', 'b'): ['q2'],
+                   ('q2', 'a'): ['q2'],
+                   ('q3', 'a'): ['q3'],
+                   ('q2', 'b'): ['q3']}
+automation.start_state = 'q0'
+automation.accept_states = ['q3']
+print('')
+print('')
+print('')
+print('-------------------------------------------------------------------LAB2-------------------------------------------------------------------------')
+# Check if automaton is deterministic
+is_deterministic = automation.is_deterministic()
+print(f"Is automaton deterministic? {is_deterministic}")
 
+# Convert NDFA to DFA
+dfa = automation.to_dfa()
+print(f"DFA states: {dfa.states}")
+print(f"DFA transition function: {dfa.transitions}")
+print(f"DFA initial state: {dfa.start_state}")
+print(f"DFA final states: {dfa.accept_states}")
+
+# Convert automaton to regular grammar
+grammar = automation.to_grammar()
+print(f"Regular grammar productions: {grammar}")
 
 
 
