@@ -59,6 +59,7 @@ if __name__ == '__main__':
     print(automatons)
 
 automation = Automaton()
+
 automation.states = ['q0', 'q1', 'q2', 'q3']
 automation.alphabet = ['a', 'b', 'c']
 automation.transitions = {('q0', 'a'): ['q0', 'q1'],
@@ -86,6 +87,7 @@ print(f"DFA final states: {dfa.accept_states}")
 # Convert automaton to regular grammar
 grammar = automation.to_grammar()
 print(f"Regular grammar productions: {grammar}")
+
 
 
 
