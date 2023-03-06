@@ -45,3 +45,32 @@ class Grammars:
         # Return the resulting finite automaton
         return automatons
 
+    def chomsky_classification(self):
+        # Check if each production in the grammar is in Chomsky normal form
+        for symbol, productions in self.productions.items():
+            for production in productions:
+                # If the production is a single terminal symbol, it's in CNF
+                if len(production) == 1 and production.islower():
+                    continue
+                # If the production is a pair of nonterminal symbols, it's in CNF
+                elif len(production) == 2 and production.isupper():
+                    continue
+                # If the production is a single nonterminal symbol, it's not in CNF
+                elif len(production) == 1 and production.isupper():
+                    return "Type 0: Unrestricted Grammar"
+                # If the production is not a pair of nonterminal symbols or a single terminal symbol, it's not in CNF
+                elif len(production) != 2 or not production.isupper():
+                    return "Type 1: Context-Sensitive Grammar"
+
+        # Check if the start symbol has a production that only consists of the empty string
+        if self.start_symbol in self.productions and 'ε' in self.productions[self.start_symbol]:
+            # If there are any other productions for the start symbol, the grammar is not in CNF
+            if len(self.productions[self.start_symbol]) > 1:
+                return "Type 2: Context-Free Grammar"
+            # If there are no other productions for the start symbol, the grammar is in CNF
+            else:
+                return "Type 3: Regular Grammar"
+        # If the start symbol doesn't have a production that only consists of the empty string, the grammar is not in CNF
+        else:
+            return "Type 2: Context-Free Grammar"
+

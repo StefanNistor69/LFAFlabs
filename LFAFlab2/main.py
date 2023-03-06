@@ -87,6 +87,7 @@ print(f"DFA final states: {dfa.accept_states}")
 # Convert automaton to regular grammar
 grammar = automation.to_grammar()
 print(f"Regular grammar productions: {grammar}")
+print(main.grammar.chomsky_classification())
 
 
 
