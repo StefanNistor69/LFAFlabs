@@ -1,4 +1,6 @@
-
+import matplotlib.pyplot as plt
+import numpy as np
+import networkx as nx
 class Automaton:
     def __init__(self):
         # Initializes the attributes of the automaton object
@@ -102,6 +104,32 @@ class Automaton:
         # Return the start symbol and the productions.
         return start_symbol, productions
 
+    def render(self):
+        # Create a directed graph using networkx
+        G = nx.DiGraph()
 
+        # Add nodes to the graph
+        for state in self.states:
+            G.add_node(state, shape='circle')
+        G.nodes[self.start_state]['shape'] = 'doublecircle'
+        for state in self.accept_states:
+            G.nodes[state]['peripheries'] = 2
+
+        # Add edges to the graph
+        for (from_state, symbol), to_states in self.transitions.items():
+            for to_state in to_states:
+                G.add_edge(from_state, to_state, label=symbol)
+
+        # Set up positions for the nodes using networkx spring_layout
+        pos = nx.spring_layout(G, seed=42)
+
+        # Draw the graph using matplotlib
+        nx.draw_networkx_nodes(G, pos, node_size=1000, alpha=0.8)
+        nx.draw_networkx_edges(G, pos, width=2, alpha=0.8)
+        nx.draw_networkx_labels(G, pos, font_size=18, font_family='sans-serif')
+        edge_labels = {(u, v): d['label'] for u, v, d in G.edges(data=True)}
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=18, font_family='sans-serif')
+        plt.axis('off')
+        plt.show()
 
 

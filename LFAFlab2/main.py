@@ -1,4 +1,5 @@
-
+import matplotlib.pyplot as plt
+import networkx as nx
 from Automaton import Automaton
 from FiniteAutomaton import FiniteAutomaton
 from Grammar import Grammars
@@ -88,8 +89,7 @@ print(f"DFA final states: {dfa.accept_states}")
 grammar = automation.to_grammar()
 print(f"Regular grammar productions: {grammar}")
 print(main.grammar.chomsky_classification())
-
-
+automation.render()
 
 
 
