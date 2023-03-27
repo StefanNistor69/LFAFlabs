@@ -137,6 +137,6 @@ class Main:
 
 
 ## Results
-![Alt text](C:\Users\snist\OneDrive\Desktop\LFAFlabs\LFAFlab3\report and source code/screens/Screenshot_1.jpg)
+![Alt text](screens/Screenshot_1.jpg)
 ## Conclusions
 In this project, we implemented a lexer and a scanner using regular expressions in Python. The lexer is responsible for tokenizing an input string and identifying the terminal and non-terminal symbols present in it based on a set of production rules. The scanner, on the other hand, is responsible for extracting all terminal symbols from the production rules and scanning an input string to identify and tokenize the longest matching terminals. The scanner and lexer are important tools in programming language processing and can be used for tasks such as syntax highlighting, code completion, and program analysis. Overall, this project provides a good foundation for understanding and implementing lexers and scanners in Python.
