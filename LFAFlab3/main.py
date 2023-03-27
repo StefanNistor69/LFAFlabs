@@ -12,10 +12,12 @@ class Main:
 
     lexer = Lexer(productions)
     tokens = lexer.tokenize(input_string)
+    print('tokenized string')
     print(tokens)
 
     scanner = Scanner(productions)
     scanner.scan(input_string)
+    print('scanned string')
     print(scanner.scan(input_string))
     print("input is valid")
 
