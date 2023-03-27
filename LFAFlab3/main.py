@@ -8,15 +8,16 @@ class Main:
         'B': ['aC'],
         'C': ['a', 'bS'],
     }
-    input_string = 'AabSababa'
-    scanner_string = 'abbaba'
+    input_string = 'abbaba'
+
     lexer = Lexer(productions)
     tokens = lexer.tokenize(input_string)
     print(tokens)
 
     scanner = Scanner(productions)
-    scanner.scan(scanner_string)
-    print(scanner.scan(scanner_string))
+    scanner.scan(input_string)
+    print(scanner.scan(input_string))
+    print("input is valid")
 
 
 
