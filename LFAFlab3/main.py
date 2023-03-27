@@ -1,5 +1,4 @@
 from lexer import Lexer
-from scanner import Scanner
 class Main:
 
     productions = {
@@ -14,11 +13,6 @@ class Main:
     tokens = lexer.tokenize(input_string)
     print('tokenized string')
     print(tokens)
-
-    scanner = Scanner(productions)
-    scanner.scan(input_string)
-    print('scanned string')
-    print(scanner.scan(input_string))
     print("input is valid")
 
 

@@ -72,44 +72,7 @@ class Lexer:
                     raise ValueError('Invalid input')
         return tokens
 ```
-### Scanner class
-The Scanner class is designed to take in a dictionary of production rules and extract all of the terminal symbols from those rules. The self.terminals attribute is then set to be a set of all terminal symbols. When the scan method is called with an input string, the method loops over the input string and attempts to match the input with one of the terminal symbols. If a match is found, the method adds a tuple to the tokens list that contains the type of the token ('TERMINAL') and the matched string. The input string is then shortened by the length of the matched string, and the loop continues. If no match is found, an error is raised. The scan method then returns the list of tokens that it has generated. Overall, this code provides a way to tokenize an input string based on the production rules and terminal symbols specified in a dictionary.
 
-```python
-    class Scanner:
-    def __init__(self, productions):
-        self.productions = productions
-        self.start_symbol = 'S'
-
-        # Extract all terminals from the productions
-        self.terminals = set()
-        for production in productions.values():
-            if isinstance(production, list):
-                for p in production:
-                    # If production is a list, join its elements into a single string
-                    # and extract terminals from it
-                    self.terminals.update(re.findall(r'[a-z]', ''.join(p)))
-            else:
-                self.terminals.update(re.findall(r'[a-z]', production))
-
-    def scan(self, input_string):
-        tokens = []
-        while input_string:
-            matched = False
-            # Sort the terminals in decreasing order of length, to match longer terminals first
-            for terminal in sorted(self.terminals, key=lambda x: len(x), reverse=True):
-                if input_string.startswith(terminal):
-                    tokens.append(('TERMINAL', terminal))
-                    input_string = input_string[len(terminal):]
-                    matched = True
-                    break
-
-            if not matched:
-                # If no terminal matches, raise an error
-                raise ValueError('Invalid input')
-
-        return tokens
-```
 
 ### Main
 
@@ -127,10 +90,6 @@ class Main:
     lexer = Lexer(productions)
     tokens = lexer.tokenize(input_string)
     print(tokens)
-
-    scanner = Scanner(productions)
-    scanner.scan(input_string)
-    print(scanner.scan(input_string))
     print("input is valid")
 ```
 
