@@ -1,5 +1,5 @@
 
-from Automaton import Automaton
+
 from FiniteAutomaton import FiniteAutomaton
 from Grammar import Grammars
 class Main:

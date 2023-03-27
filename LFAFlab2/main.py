@@ -3,6 +3,7 @@ import networkx as nx
 from Automaton import Automaton
 from FiniteAutomaton import FiniteAutomaton
 from Grammar import Grammars
+
 class Main:
     # Initialize the Main class by setting up a grammar,
     # converting it to a finite automaton, and setting up a FiniteAutomaton object
