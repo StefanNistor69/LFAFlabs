@@ -1,20 +1,9 @@
 # Lexer & Scanner
 ## Course: Formal Languages & Finite Automata
 ## Author: Nistor Stefan FAF-211
-Variant 18
 
-VN={S, A, B, C}, 
 
-VT={a, b}, 
 
-P={ 
-    S → aA     
-    A → bS    
-    S → aB   
-    B → aC    
-    C → a  
-    C → bS
-}
 
 
 ## Theory
@@ -35,62 +24,59 @@ This code defines a lexer class that takes a set of production rules as input an
 ```python
 
 class Lexer:
-    # Initialize the lexer with the production rules
-    def __init__(self, productions):
-        self.productions = productions
-        self.start_symbol = 'S'
-        terminals = set()
-        # Loop over the production rules to extract the terminals
-        for value in productions.values():
-            # If the production rule is a string, extract the lowercase letters
-            if isinstance(value, str):
-                terminals.update(re.findall(r'[a-z]', value))
-            # If the production rule is a list of strings, join them together first and then extract the lowercase letters
-            else:
-                terminals.update(re.findall(r'[a-z]', ''.join(value)))
-        self.terminals = terminals
+    def __init__(self):
+        self.tokens = []
+        self.terminal_pattern = re.compile(r"\s*([-+\/*()])")
+        self.nonterminal_pattern = re.compile(r"\s*([a-zA-Z]+|[0-9]+)")
 
-    # Tokenize an input string
     def tokenize(self, input_string):
-        tokens = []
-        i = 0
-        # Loop over the input string
-        while i < len(input_string):
-            # If the current character is a lowercase letter, it is a terminal symbol
-            match = re.match(r'[a-z]', input_string[i])
+        while len(input_string) > 0:
+            match = self.terminal_pattern.match(input_string)
             if match:
-                tokens.append(('TERMINAL', match.group()))
-                i += 1
-            # If the current character is an uppercase letter, it is a non-terminal symbol
+                token = ("TERMINAL", match.group(0))
+                self.tokens.append(token)
+                input_string = input_string[len(token[1]):]
             else:
-                match = re.match(r'[A-Z]', input_string[i])
-                if match:
-                    tokens.append(('NON_TERMINAL', match.group()))
-                    i += 1
-                # If the current character is neither a lowercase nor an uppercase letter, the input is invalid
-                else:
-                    raise ValueError('Invalid input')
-        return tokens
+                match = self.nonterminal_pattern.match(input_string)
+                if not match:
+                    raise ValueError(f"Invalid token: {input_string}")
+                token = ("NON-TERMINAL", match.group(0))
+                self.tokens.append(token)
+                input_string = input_string[len(token[1]):]
+        return self.tokens
 ```
-
-
-### Main
-
+### Tokenize method
+The tokenize method starts with an empty list of tokens, then repeatedly attempts to match the input string with either the terminal or non-terminal token patterns.
+If a match with the terminal token pattern is found, a token tuple is created with the label "TERMINAL" and the matched value as its second element, and then the token is appended to the list of tokens. The input string is then truncated by the length of the matched string to remove the token that has been processed.
+If a match with the non-terminal token pattern is found, a token tuple is created with the label "NON-TERMINAL" and the matched value as its second element, and then the token is appended to the list of tokens. The input string is truncated by the length of the matched string to remove the non-terminal symbol that has been processed.
+If neither pattern matches, the method raises a ValueError with a message indicating that the input string contains an invalid token.
+The method continues this process until the input string is fully consumed, at which point it returns the list of tokens.
 ```python
+ def tokenize(self, input_string):
+        while len(input_string) > 0:
+            match = self.terminal_pattern.match(input_string)
+            if match:
+                token = ("TERMINAL", match.group(0))
+                self.tokens.append(token)
+                input_string = input_string[len(token[1]):]
+            else:
+                match = self.nonterminal_pattern.match(input_string)
+                if not match:
+                    raise ValueError(f"Invalid token: {input_string}")
+                token = ("NON-TERMINAL", match.group(0))
+                self.tokens.append(token)
+                input_string = input_string[len(token[1]):]
+        return self.tokens
+```
+### Main
+The Main class imports the Lexer class from the lexer module and creates an instance of the Lexer class by calling its constructor with no arguments. It then calls the tokenize method of the lexer instance with the input string "2 + 3 * (4 - 1)". This method breaks the input string down into a list of tokens and returns it. Finally, the resulting list of tokens is printed to the console using the print function. The output shows that the input string has been correctly tokenized into individual tokens, including numbers, operators, and parentheses. The message "input valid" is also printed to the console, indicating that the input string was successfully tokenized without any errors.
+```python
+from lexer import Lexer
 class Main:
-
-    productions = {
-        'S': ['aA', 'aB'],
-        'A': ['bS'],
-        'B': ['aC'],
-        'C': ['a', 'bS'],
-    }
-    input_string = 'abbaba'
-
-    lexer = Lexer(productions)
-    tokens = lexer.tokenize(input_string)
+    lexer = Lexer()
+    tokens = lexer.tokenize("2 + 3 * (4 - 1)")
     print(tokens)
-    print("input is valid")
+    print('input valid')
 ```
 
 

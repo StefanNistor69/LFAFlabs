@@ -1,41 +1,23 @@
 import re
 
-
 class Lexer:
-    # Initialize the lexer with the production rules
-    def __init__(self, productions):
-        self.productions = productions
-        self.start_symbol = 'S'
-        terminals = set()
-        # Loop over the production rules to extract the terminals
-        for value in productions.values():
-            # If the production rule is a string, extract the lowercase letters
-            if isinstance(value, str):
-                terminals.update(re.findall(r'[a-z]', value))
-            # If the production rule is a list of strings, join them together first and then extract the lowercase letters
-            else:
-                terminals.update(re.findall(r'[a-z]', ''.join(value)))
-        self.terminals = terminals
+    def __init__(self):
+        self.tokens = []
+        self.terminal_pattern = re.compile(r"\s*([-+\/*()])")
+        self.nonterminal_pattern = re.compile(r"\s*([a-zA-Z]+|[0-9]+)")
 
-    # Tokenize an input string
     def tokenize(self, input_string):
-        tokens = []
-        i = 0
-        # Loop over the input string
-        while i < len(input_string):
-            # If the current character is a lowercase letter, it is a terminal symbol
-            match = re.match(r'[a-z]', input_string[i])
+        while len(input_string) > 0:
+            match = self.terminal_pattern.match(input_string)
             if match:
-                tokens.append(('TERMINAL', match.group()))
-                i += 1
-            # If the current character is an uppercase letter, it is a non-terminal symbol
+                token = ("TERMINAL", match.group(0))
+                self.tokens.append(token)
+                input_string = input_string[len(token[1]):]
             else:
-                match = re.match(r'[A-Z]', input_string[i])
-                if match:
-                    tokens.append(('NON_TERMINAL', match.group()))
-                    i += 1
-                # If the current character is neither a lowercase nor an uppercase letter, the input is invalid
-                else:
-                    raise ValueError('Invalid input')
-        return tokens
-
+                match = self.nonterminal_pattern.match(input_string)
+                if not match:
+                    raise ValueError(f"Invalid token: {input_string}")
+                token = ("NON-TERMINAL", match.group(0))
+                self.tokens.append(token)
+                input_string = input_string[len(token[1]):]
+        return self.tokens

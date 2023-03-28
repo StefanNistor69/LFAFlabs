@@ -1,19 +1,8 @@
 from lexer import Lexer
 class Main:
-
-    productions = {
-        'S': ['aA', 'aB'],
-        'A': ['bS'],
-        'B': ['aC'],
-        'C': ['a', 'bS'],
-    }
-    input_string = 'abbaba'
-
-    lexer = Lexer(productions)
-    tokens = lexer.tokenize(input_string)
-    print('tokenized string')
+    lexer = Lexer()
+    tokens = lexer.tokenize("2 + 3 * (4 - 1)")
     print(tokens)
-    print("input is valid")
-
+    print('input valid')
 
 
