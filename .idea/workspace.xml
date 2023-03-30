@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b3fe1bb-65aa-4b32-8706-df88f0b0dd59" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/.idea/LFAFlab.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/FiniteAutomaton.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/Grammar.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/Report and source code/Latex_report_Nistor.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/Report and source code/Report_Stefan_Nistor.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/Report and source code/report_lab1.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/Report and source code/screens/Screenshot_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab2/Automaton.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab2/FiniteAutomaton.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab2/Grammar.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab2/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab2/report and source code/Latex_report_Nistor.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab2/report and source code/Latex_report_Nistor.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab2/report and source code/report_lab2.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab2/report and source code/screens/Screenshot_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LFAFlab2/report and source code/screens/Screenshot_2.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
